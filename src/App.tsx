@@ -37,9 +37,10 @@ function App() {
                 <hr/>
                 <div id='final' className="text-center">
                     <footer className="bg-blue-500 text-white p-4">
-                        <p className="mb-2">&#169; Todos os direitos reservados</p>
+                        <p>Salesforce</p>
+                        <p className="mb-2">&#169;Todos os direitos reservados</p>
                         <p>Erick Lopes Silva RM - 553927, Gabriel Sá Bragança RM - 554064, Gustavo Henrique Camacho Dos Santos RM - 554184</p>
-                        <p>https://github.com/ericklpps/</p>
+                        <p>https://github.com/ericklpps/sprint4</p>
                     </footer>
                 </div>
             </div>

@@ -33,12 +33,14 @@ const Inicio: React.FC = () => {
                                     <tr>
                                         <td className="image-cell" align="center">
                                             <img src={imagem3} alt="Guia" width="200" height="200" className="text-center" />
+                                            <br/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td className="text-center">
                                             <Link to="/Guia" className="bg-white border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded mb-2 text-center">Nova função: Guia</Link>
                                             <br />
+                                            <br/>
                                             <p className="text-center mb-4">Nova ferramenta onde o usuário pode <br />ativar um "guia" por voz e também um<br /> leitor de imagem.</p>
                                             <br />
                                         </td>
@@ -55,12 +57,14 @@ const Inicio: React.FC = () => {
                                     <tr>
                                         <td className="image-cell" align="center">
                                             <img src={imagem2} alt="Daltonismo" width="200" height="200" className="text-center" />
+                                            <br/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td className="text-center">
                                             <Link to="/Daltonismo" className="bg-white border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded mb-2 text-center">Nova função: Daltonismo</Link>
                                             <br />
+                                            <br/>
                                             <p className="text-center mb-4">Nova ferramenta onde o usuário pode <br />escolher a paleta de cores do site<br /> adaptada para os tipos de daltonismo.</p>
                                             <br />
                                         </td>
