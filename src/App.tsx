@@ -11,7 +11,7 @@ function App() {
     return (
         <Router>
             <div>
-                <header className="bg-white text-gray-800 p-4 rounded">
+                <header className="bg-white text-gray-800 p-4 rounded shadow-md">
                     <div className="flex items-start">
                         <div className="flex items-start">
                             <img src="/logosalesforce.png" alt="Logo Salesforce" className="h-12 w-auto mr-2" />
@@ -26,7 +26,7 @@ function App() {
                 </nav>
             </div>
         </header>
-
+        
                 <Routes>
                     <Route path='/' element={<Inicio/>}/>
                     <Route path='/Guia' element={<Guia/>}/>

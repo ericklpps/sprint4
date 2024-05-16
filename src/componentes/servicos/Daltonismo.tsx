@@ -8,6 +8,7 @@ const Daltonismo: React.FC = () =>{
 
     return(
         <div className="flex flex-col items-center">
+            <br/>
             <div className="flex flex-col items-center mb-8">
                 <h2 className="text-3xl font-bold mb-4">Nova Função: Daltonismo</h2>
                 <p className="text-lg text-center text-gray-800 mb-8">Torne seu site mais inclusivo com a opção de alternar entre três paletas de cores adaptadas para diferentes tipos de daltonismo: monocromático, dicromático e tricromático. Esta funcionalidade personalizada visa atender às necessidades visuais específicas dos usuários, promovendo uma experiência online acessível e equitativa.</p>
@@ -22,6 +23,7 @@ const Daltonismo: React.FC = () =>{
                 <button className="bg-white border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => setDicromatico(true)}>Dicromático</button>
                 <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => setTricromatico(true)}>Tricromático</button>
             </div>
+            <br/>
         </div>
     )
 }
