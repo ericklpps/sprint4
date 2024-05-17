@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import imagemGuia from "../../assets/imagem4.webp"; // Ajuste o caminho se necessário
+import imagemGuia from "../../assets/imagem4.webp";
 
 const Guia: React.FC = () => {
     const [vozAtivada, setVozAtivada] = useState(false);

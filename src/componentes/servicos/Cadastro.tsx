@@ -8,6 +8,8 @@ interface Usuario {
   date: Date;
   email: string;
   password: string;
+  tipoDef: string;
+  tipoDaltonismo?: string;
 }
 
 const Cadastro: React.FC = () => {
@@ -18,10 +20,12 @@ const Cadastro: React.FC = () => {
     date: new Date(),
     email: "",
     password: "",
+    tipoDef: "",
+    tipoDaltonismo: ""
   });
   const [error, setError] = useState<string | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setUsuario((prevUsuario) => ({
       ...prevUsuario,
@@ -41,7 +45,7 @@ const Cadastro: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <br/>
+      <br/>
       <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-4 text-center">Cadastro</h2>
         <div className="mb-4">
@@ -80,6 +84,29 @@ const Cadastro: React.FC = () => {
           </label>
           <input type="password" id="password" name="password" value={usuario.password} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
+        <div className="mb-4">
+          <label htmlFor="tipoDef" className="block text-gray-700">
+            Tipo de Deficiência
+          </label>
+          <select id="tipoDef" name="tipoDef" value={usuario.tipoDef} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1">
+            <option value="">Selecione...</option>
+            <option value="daltonismo">Daltonismo</option>
+            <option value="baixaVisao">Baixa Visão</option>
+          </select>
+        </div>
+        {usuario.tipoDef === "daltonismo" && (
+          <div className="mb-4">
+            <label htmlFor="tipoDaltonismo" className="block text-gray-700">
+              Tipo de Daltonismo
+            </label>
+            <select id="tipoDaltonismo" name="tipoDaltonismo" value={usuario.tipoDaltonismo} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1">
+              <option value="">Selecione...</option>
+              <option value="monocromatico">Monocromático</option>
+              <option value="dicromatico">Dicromático</option>
+              <option value="tricromatico">Tricromático</option>
+            </select>
+          </div>
+        )}
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <button onClick={handleCadastro} className="bg-blue-500 text-white font-bold py-2 px-4 rounded w-full">
           Concluir Cadastro
