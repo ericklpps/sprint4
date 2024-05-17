@@ -5,7 +5,8 @@ import Daltonismo from "./componentes/servicos/Daltonismo";
 import Inicio from "./componentes/servicos/Inicio";
 import NaoEncontrado from "./componentes/servicos/PNF";
 import Login from "./componentes/servicos/Login";
-// import Login from "./componentes/servicos/Login";
+import Cadastro from "./componentes/servicos/Cadastro";
+
 function App() {
     return (
         <Router>
@@ -21,6 +22,7 @@ function App() {
                         <li className="mr-4"><Link to='/Guia' className="hover:text-blue-500">Guia</Link></li>
                         <li className="mr-4"><Link to='/Daltonismo' className="hover:text-blue-500">Daltonismo</Link></li>
                         <li className="mr-4"><Link to='/Login' className="hover:text-blue-500">Login</Link></li>
+                        <li className="mr-4"><Link to='/Cadastro' className="hover:text-blue-500">Cadastre-se</Link></li>
                     </ul>
                 </nav>
             </div>
@@ -31,6 +33,7 @@ function App() {
                     <Route path='/Guia' element={<Guia/>}/>
                     <Route path='/Daltonismo' element={<Daltonismo/>}/>
                     <Route path='/Login' element={<Login/>}/>
+                    <Route path='/Cadastro' element={<Cadastro/>}/>
                     <Route path="*" element={<NaoEncontrado/>}/>
                 </Routes>
                 <hr/>
