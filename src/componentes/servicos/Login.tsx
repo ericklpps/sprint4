@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-// Interface para definir o que será enviado para a API
 interface Usuario {
   email: string;
   password: string;
