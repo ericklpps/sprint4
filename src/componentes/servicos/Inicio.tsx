@@ -26,28 +26,6 @@ const Inicio: React.FC = () => {
                 <h2 className="text-lg font-bold text-center">O que há de novo na Salesforce?</h2>
                 <div className="flex justify-center space-x-4">
                     <div className="funcoes-section">
-                        <h2 className="text-white font-bold text-lg mb-4 text-center">Nova função: Guia</h2>
-                        <div className="table-container">
-                            <table className="table" style={{ border: '2px solid black', borderRadius: '10px' }}>
-                                <tbody>
-                                    <tr>
-                                        <td className="image-cell" align="center">
-                                            <img src={imagem3} alt="Guia" width="200" height="200" className="text-center" />
-                                            <br/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="text-center">
-                                            <Link to="/Guia" className="bg-white border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded mb-2 text-center">Nova função: Guia</Link>
-                                            <br />
-                                            <br/>
-                                            <p className="text-center mb-4">Nova ferramenta onde o usuário pode <br />ativar um "guia" por voz e também um<br /> leitor de imagem.</p>
-                                            <br />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                     <div className="funcoes-section">
                         <h2 className="text-white font-bold text-lg mb-4 text-center">Nova função: Daltonismo</h2>
