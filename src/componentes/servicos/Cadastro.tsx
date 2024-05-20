@@ -1,42 +1,45 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-interface Usuario {
+interface User {
   name: string;
   lastName: string;
-  address: string;
-  date: Date;
   email: string;
   password: string;
-  tipoDef: string;
-  tipoDaltonismo?: string;
+  birthday: string;
+  isColorBlind: boolean;
+  typeColorBlind?: string;
 }
 
 const Cadastro: React.FC = () => {
-  const [usuario, setUsuario] = useState<Usuario>({
-    name: "",
-    lastName: "",
-    address: "",
-    date: new Date(),
-    email: "",
-    password: "",
-    tipoDef: "",
-    tipoDaltonismo: ""
+  const [values, setValues] = useState<User>({
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    birthday: '',
+    isColorBlind: false,
   });
   const [error, setError] = useState<string | null>(null);
+  const [cadastroSuccess, setCadastroSuccess] = useState<boolean>(false);
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setUsuario((prevUsuario) => ({
-      ...prevUsuario,
-      [name]: value,
+    const { name, value, type, checked } = e.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const handleCadastro = async () => {
     try {
-      const response = await axios.post("https://api.exemplo.com/cadastro", usuario);
+      const response = await axios.post("http://localhost:3001/users", values);
       console.log("Cadastro bem-sucedido:", response.data);
+      setCadastroSuccess(true); 
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       setError("Erro ao tentar fazer cadastro");
       console.error("Erro ao tentar fazer cadastro:", error);
@@ -52,54 +55,44 @@ const Cadastro: React.FC = () => {
           <label htmlFor="name" className="block text-gray-700">
             Nome
           </label>
-          <input type="text" id="name" name="name" value={usuario.name} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input type="text" id="name" name="name" value={values.name} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
         <div className="mb-4">
           <label htmlFor="lastName" className="block text-gray-700">
             Sobrenome
           </label>
-          <input type="text" id="lastName" name="lastName" value={usuario.lastName} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input type="text" id="lastName" name="lastName" value={values.lastName} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
         <div className="mb-4">
-          <label htmlFor="address" className="block text-gray-700">
-            Endereço
+          <label htmlFor="birthday" className="block text-gray-700">
+            Data de Nascimento (yyyy/mm/dd)
           </label>
-          <input type="text" id="address" name="address" value={usuario.address} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="date" className="block text-gray-700">
-            Data de Nascimento
-          </label>
-          <input type="date" id="date" name="date" value={usuario.date.toISOString().split('T')[0]} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input type="text" id="birthday" name="birthday" value={values.birthday} onChange={handleInputChange} placeholder="yyyy/mm/dd" className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700">
             E-mail
           </label>
-          <input type="email" id="email" name="email" value={usuario.email} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input type="email" id="email" name="email" value={values.email} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block text-gray-700">
             Senha
           </label>
-          <input type="password" id="password" name="password" value={usuario.password} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input type="password" id="password" name="password" value={values.password} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
         <div className="mb-4">
-          <label htmlFor="tipoDef" className="block text-gray-700">
-            Tipo de Deficiência
+          <label htmlFor="isColorBlind" className="block text-gray-700">
+            Tem Daltonismo?
           </label>
-          <select id="tipoDef" name="tipoDef" value={usuario.tipoDef} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1">
-            <option value="">Selecione...</option>
-            <option value="daltonismo">Daltonismo</option>
-            <option value="baixaVisao">Baixa Visão</option>
-          </select>
+          <input type="checkbox" id="isColorBlind" name="isColorBlind" checked={values.isColorBlind} onChange={handleInputChange} className="mt-1"/>
         </div>
-        {usuario.tipoDef === "daltonismo" && (
+        {values.isColorBlind && (
           <div className="mb-4">
-            <label htmlFor="tipoDaltonismo" className="block text-gray-700">
+            <label htmlFor="typeColorBlind" className="block text-gray-700">
               Tipo de Daltonismo
             </label>
-            <select id="tipoDaltonismo" name="tipoDaltonismo" value={usuario.tipoDaltonismo} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1">
+            <select id="typeColorBlind" name="typeColorBlind" value={values.typeColorBlind || ''} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1">
               <option value="">Selecione...</option>
               <option value="monocromatico">Monocromático</option>
               <option value="dicromatico">Dicromático</option>

@@ -1,27 +1,30 @@
 import React, { useState } from "react";
-import axios from "axios";
-
-interface Usuario {
-  email: string;
-  password: string;
-}
+import { loginUser } from "../ReqApis/ApiLogin"; // Importando a função de login
+import { users } from "../ReqApis/interfaces";
 
 const Login: React.FC = () => {
-  const [usuario, setUsuario] = useState<Usuario>({ email: "", password: "" });
+  const [user, setUser] = useState<users>({ email: "", password: "" });
   const [error, setError] = useState<string | null>(null);
+  const [loginSuccess, setLoginSuccess] = useState<boolean>(false); // Estado para controlar se o login foi feito com sucesso
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUsuario((prevUsuario) => ({
-      ...prevUsuario,
+    setUser((prevUser) => ({
+      ...prevUser,
       [name]: value,
     }));
   };
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("https://api.exemplo.com/login", usuario);
-      console.log("Login bem-sucedido:", response.data);
+      const foundUser = await loginUser(user.email, user.password); // Chama a função de login
+
+      if (foundUser) {
+        console.log("Login bem-sucedido:", foundUser);
+        setLoginSuccess(true); // Define o estado de login bem-sucedido como verdadeiro
+      } else {
+        setError("E-mail ou senha incorretos");
+      }
     } catch (error) {
       setError("Erro ao tentar fazer login");
       console.error("Erro ao tentar fazer login:", error);
@@ -36,15 +39,16 @@ const Login: React.FC = () => {
           <label htmlFor="email" className="block text-gray-700">
             E-mail
           </label>
-          <input type="email" id="email" name="email" value={usuario.email} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input type="email" id="email" name="email" value={user.email} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block text-gray-700">
             Senha
           </label>
-          <input type="password" id="password" name="password" value={usuario.password} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input type="password" id="password" name="password" value={user.password} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
         </div>
         {error && <div className="text-red-500 mb-4">{error}</div>}
+        {loginSuccess && <div className="text-green-500 mb-4">Login feito com sucesso!</div>}
         <button onClick={handleLogin} className="bg-blue-500 text-white font-bold py-2 px-4 rounded w-full">
           Entrar
         </button>

@@ -18,7 +18,7 @@ const Inicio: React.FC = () => {
                 </div>
             </div>
             <div className="bg-white-500 p-4 flex justify-center space-x-4">
-                <Link to="/Guia" className="bg-blue-500 text-black font-bold py-2 px-4 rounded text-center">Faça o teste grátis</Link>
+                <Link to="/Cadastro" className="bg-blue-500 text-black font-bold py-2 px-4 rounded text-center">Faça o teste grátis</Link>
                 <Link to="/Daltonismo" className="bg-white border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded text-center">Saiba mais</Link>
             </div>
             <br />
