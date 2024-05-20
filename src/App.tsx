@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Daltonismo from "./componentes/servicos/Daltonismo";
@@ -5,6 +6,9 @@ import Inicio from "./componentes/servicos/Inicio";
 import NaoEncontrado from "./componentes/servicos/PNF";
 import Login from "./componentes/servicos/Login";
 import Cadastro from "./componentes/servicos/Cadastro";
+import FeedbackForm from "./componentes/servicos/Feedback";
+import GerenciarUsuarios from "./componentes/servicos/GerenciarUsuario";
+ 
 
 function App() {
     return (
@@ -21,6 +25,8 @@ function App() {
                         <li className="mr-4"><Link to='/Daltonismo' className="hover:text-blue-500">Daltonismo</Link></li>
                         <li className="mr-4"><Link to='/Login' className="hover:text-blue-500">Login</Link></li>
                         <li className="mr-4"><Link to='/Cadastro' className="hover:text-blue-500">Cadastre-se</Link></li>
+                        <li className="mr-4"><Link to='/Feedback' className="hover:text-blue-500">Feedback</Link></li>
+                        <li className="mr-4"><Link to='/GerenciarUsuario'>Listar</Link></li>
                     </ul>
                 </nav>
             </div>
@@ -31,6 +37,8 @@ function App() {
                     <Route path='/Daltonismo' element={<Daltonismo/>}/>
                     <Route path='/Login' element={<Login/>}/>
                     <Route path='/Cadastro' element={<Cadastro/>}/>
+                    <Route path='/Feedback' element={<FeedbackForm/>}/>
+                    <Route path="/GerenciarUsuario" element={<GerenciarUsuarios/>}/>
                     <Route path="*" element={<NaoEncontrado/>}/>
                 </Routes>
                 <hr/>

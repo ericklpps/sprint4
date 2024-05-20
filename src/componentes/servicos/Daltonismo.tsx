@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 import imagemDaltonismo from "../../assets/imagem2.png";
+import "./styles.css"; 
 
-const Daltonismo: React.FC = () =>{
-    const [monocromatico, setMonocromatico] = useState(false);
-    const [dicromatico, setDicromatico] = useState(false);
-    const [tricromatico, setTricromatico] = useState(false);
+const Daltonismo: React.FC = () => {
+    const [daltonismo, setDaltonismo] = useState<string | null>(null);
+
+    const aplicarPaleta = (tipoDaltonismo: string) => {
+        document.documentElement.classList.remove("monocromatico", "dicromatico", "tricromatico");
+        document.documentElement.classList.add(tipoDaltonismo);
+        if (tipoDaltonismo === "monocromatico") {
+            document.body.classList.add("monocromatico");
+        } else {
+            document.body.classList.remove("monocromatico");
+        }
+        setDaltonismo(tipoDaltonismo);
+    };
+
+    const restaurarPaleta = () => {
+        document.documentElement.classList.remove("monocromatico", "dicromatico", "tricromatico");
+        document.body.classList.remove("monocromatico");
+        setDaltonismo(null);
+    };
 
     return(
         <div className="flex flex-col items-center">
@@ -19,11 +35,15 @@ const Daltonismo: React.FC = () =>{
             </div>
             
             <div className="flex justify-center">
-                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => setMonocromatico(true)}>Monocromático</button>
-                <button className="bg-white border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => setDicromatico(true)}>Dicromático</button>
-                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => setTricromatico(true)}>Tricromático</button>
+                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => aplicarPaleta("monocromatico")}>Monocromático</button>
+                <button className="bg-white border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => aplicarPaleta("dicromatico")}>Dicromático</button>
+                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-2 w-36" onClick={() => aplicarPaleta("tricromatico")}>Tricromático</button>
             </div>
             <br/>
+
+            <div className="flex justify-center">
+                <button className="bg-gray-500 text-white font-bold py-2 px-4 rounded w-36" onClick={restaurarPaleta}>Restaurar</button>
+            </div>
         </div>
     )
 }

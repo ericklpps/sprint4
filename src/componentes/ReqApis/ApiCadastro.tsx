@@ -3,7 +3,7 @@ import axios from 'axios';
 import { users } from '../ReqApis//interfaces';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001/users',
+  baseURL: 'http://localhost:8080/users',
 });
 
 export const registerUser = async (

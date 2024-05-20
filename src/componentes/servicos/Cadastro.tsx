@@ -34,7 +34,7 @@ const Cadastro: React.FC = () => {
 
   const handleCadastro = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/users", values);
+      const response = await axios.post("http://localhost:8080/users", values);
       console.log("Cadastro bem-sucedido:", response.data);
       setCadastroSuccess(true); 
       setTimeout(() => {

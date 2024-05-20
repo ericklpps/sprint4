@@ -1,0 +1,31 @@
+/* styles.css */
+
+:root {
+    --cor-fundo: #ffffff;
+    --cor-texto: #000000;
+  }
+  
+  body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+  }
+  
+  .monocromatico {
+    --cor-fundo: #d3d3d3; /* Cinza claro */
+    --cor-texto: #000000; /* Preto */
+  }
+  
+  .dicromatico {
+    --cor-fundo: #ffffe0; /* Amarelo claro */
+    --cor-texto: #0000ff; /* Azul */
+  }
+  
+  .tricromatico {
+    --cor-fundo: #ffe6e6; /* Rosa claro */
+    --cor-texto: #008000; /* Verde */
+  }
+  
+  body.monocromatico {
+    filter: grayscale(100%);
+  }
+  
