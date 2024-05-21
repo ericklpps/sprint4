@@ -1,4 +1,3 @@
-// src/GerenciarUsuarios.tsx
 import React, { useState, useEffect } from "react";
 import ListarUsuarios from "./ListarUsuarios";
 import UserUpdate from "./UserUpdate";
@@ -11,7 +10,7 @@ interface User {
 }
 
 const GerenciarUsuarios: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [, setUsers] = useState<User[]>([]);
   const [editingUser, setEditingUser] = useState<User | null>(null);
 
   const fetchUsers = () => {

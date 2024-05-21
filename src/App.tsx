@@ -1,5 +1,5 @@
 
-import React from "react";
+
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Daltonismo from "./componentes/servicos/Daltonismo";
 import Inicio from "./componentes/servicos/Inicio";

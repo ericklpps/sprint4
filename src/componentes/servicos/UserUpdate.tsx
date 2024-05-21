@@ -1,4 +1,3 @@
-// src/UserUpdate.tsx
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -20,17 +19,22 @@ const UserUpdate: React.FC<UserUpdateProps> = ({ user, setEditingUser, refreshUs
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData(prevState => ({ ...prevState, [name]: value }));
+    console.log(`Updated ${name} to ${value}`);
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    console.log('Submitting form with data:', formData);
     axios.put(`http://localhost:8080/users/${formData.id}`, formData)
       .then(() => {
         alert('Usuário atualizado com sucesso!');
         setEditingUser(null);
         refreshUsers();
       })
-      .catch(error => console.error('Erro ao atualizar usuário:', error));
+      .catch(error => {
+        console.error('Erro ao atualizar usuário:', error);
+        alert(`Erro ao atualizar usuário: ${error.response?.data || error.message}`);
+      });
   };
 
   return (
