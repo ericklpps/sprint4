@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Se digitar uma URL inexistente, retorna este componente
 const NaoEncontrado: React.FC = () => {
   return (
     <div className="bg-black text-white flex flex-col items-center justify-center h-screen">

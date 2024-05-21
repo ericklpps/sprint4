@@ -7,11 +7,9 @@ const api = axios.create({
 
 export const loginUser = async (email: string, password: string): Promise<users | null> => {
   try {
-    const response = await api.get<users[]>(`?q={"email":"${encodeURIComponent(email)}","password":"${encodeURIComponent(password)}"}`);
+    const response = await api.get<users>(`?q={"email":"${encodeURIComponent(email)}","password":"${encodeURIComponent(password)}"}`);
 
-    const user = response.data.find(user => user.email === email && user.password === password);
-
-    return user || null;
+    return response.data || null;
   } catch (error) {
     console.error("Erro ao buscar usuário:", error);
     return null;

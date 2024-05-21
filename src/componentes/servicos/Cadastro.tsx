@@ -21,15 +21,22 @@ const Cadastro: React.FC = () => {
     isColorBlind: false,
   });
   const [error, setError] = useState<string | null>(null);
-  const [cadastroSuccess, setCadastroSuccess] = useState<boolean>(false);
-
+  const [, setCadastroSuccess] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
-    setValues((prevValues) => ({
-      ...prevValues,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+    const { name, value, type } = e.target;
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked;
+      setValues((prevValues) => ({
+        ...prevValues,
+        [name]: checked,
+      }));
+    } else {
+      setValues((prevValues) => ({
+        ...prevValues,
+        [name]: value,
+      }));
+    }
   };
 
   const handleCadastro = async () => {
@@ -55,44 +62,93 @@ const Cadastro: React.FC = () => {
           <label htmlFor="name" className="block text-gray-700">
             Nome
           </label>
-          <input type="text" id="name" name="name" value={values.name} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={values.name}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded mt-1"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="lastName" className="block text-gray-700">
             Sobrenome
           </label>
-          <input type="text" id="lastName" name="lastName" value={values.lastName} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={values.lastName}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded mt-1"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="birthday" className="block text-gray-700">
             Data de Nascimento (yyyy/mm/dd)
           </label>
-          <input type="text" id="birthday" name="birthday" value={values.birthday} onChange={handleInputChange} placeholder="yyyy/mm/dd" className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input
+            type="text"
+            id="birthday"
+            name="birthday"
+            value={values.birthday}
+            onChange={handleInputChange}
+            placeholder="yyyy/mm/dd"
+            className="w-full px-3 py-2 border border-gray-300 rounded mt-1"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700">
             E-mail
           </label>
-          <input type="email" id="email" name="email" value={values.email} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={values.email}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded mt-1"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block text-gray-700">
             Senha
           </label>
-          <input type="password" id="password" name="password" value={values.password} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1"/>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={values.password}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded mt-1"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="isColorBlind" className="block text-gray-700">
             Tem Daltonismo?
           </label>
-          <input type="checkbox" id="isColorBlind" name="isColorBlind" checked={values.isColorBlind} onChange={handleInputChange} className="mt-1"/>
+          <input
+            type="checkbox"
+            id="isColorBlind"
+            name="isColorBlind"
+            checked={values.isColorBlind}
+            onChange={handleInputChange}
+            className="mt-1"
+          />
         </div>
         {values.isColorBlind && (
           <div className="mb-4">
             <label htmlFor="typeColorBlind" className="block text-gray-700">
               Tipo de Daltonismo
             </label>
-            <select id="typeColorBlind" name="typeColorBlind" value={values.typeColorBlind || ''} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded mt-1">
+            <select
+              id="typeColorBlind"
+              name="typeColorBlind"
+              value={values.typeColorBlind || ''}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded mt-1"
+            >
               <option value="">Selecione...</option>
               <option value="monocromatico">Monocromático</option>
               <option value="dicromatico">Dicromático</option>
@@ -101,7 +157,10 @@ const Cadastro: React.FC = () => {
           </div>
         )}
         {error && <div className="text-red-500 mb-4">{error}</div>}
-        <button onClick={handleCadastro} className="bg-blue-500 text-white font-bold py-2 px-4 rounded w-full">
+        <button
+          onClick={handleCadastro}
+          className="bg-blue-500 text-white font-bold py-2 px-4 rounded w-full"
+        >
           Concluir Cadastro
         </button>
       </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import imagem1 from "../../assets/imagem1.webp";
 import imagem2 from "../../assets/imagem2.png";
-import imagem3 from "../../assets/imagem3.webp";
+
 
 const Inicio: React.FC = () => {
     return (
