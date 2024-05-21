@@ -3,7 +3,7 @@ import imagemDaltonismo from "../../assets/imagem2.png";
 import "./styles.css"; 
 
 const Daltonismo: React.FC = () => {
-    const [daltonismo, setDaltonismo] = useState<string | null>(null);
+    const [, setDaltonismo] = useState<string | null>(null);
 
     const aplicarPaleta = (tipoDaltonismo: string) => {
         document.documentElement.classList.remove("monocromatico", "dicromatico", "tricromatico");
